@@ -1,0 +1,57 @@
+name: "Manage Issues for Project"
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  manage-issues-for-project:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Move issues which have a Available label to the project board column called unnecessary
+        if: github.event.label.name == 'STATUS: unnecessary'
+        uses: alex-page/github-project-automation-plus@v0.8.1
+        with:
+          project: Task Kanban
+          column: unnecessary
+          repo-token: ${{ secrets.GHPROJECT_TOKEN }}
+              
+      - name: Move issues which have a In Progress label to the project board column called In canceled
+        if: github.event.label.name == 'STATUS: canceled'
+        uses: alex-page/github-project-automation-plus@v0.8.1
+        with:
+          project: Task Kanban
+          column: canceled
+          repo-token: ${{ secrets.GHPROJECT_TOKEN }}
+              
+      - name: Move issues which have a Pending label to the project board column called Pending
+        if: github.event.label.name == 'STATUS: pending'
+        uses: alex-page/github-project-automation-plus@v0.8.1
+        with:
+          project: Task Kanban
+          column: pending
+          repo-token: ${{ secrets.GHPROJECT_TOKEN }}
+              
+      - name: Move issues which have a Available label to the project board column called available
+        if: github.event.label.name == 'STATUS: available'
+        uses: alex-page/github-project-automation-plus@v0.8.1
+        with:
+          project: Task Kanban
+          column: available
+          repo-token: ${{ secrets.GHPROJECT_TOKEN }}
+              
+      - name: Move issues which have a In Progress label to the project board column called In progress
+        if: github.event.label.name == 'STATUS: in progress'
+        uses: alex-page/github-project-automation-plus@v0.8.1
+        with:
+          project: Task Kanban
+          column: in progress
+          repo-token: ${{ secrets.GHPROJECT_TOKEN }}
+              
+      - name: Move issues which have a Done label to the project board column called Done
+        if: github.event.label.name == 'STATUS: done'
+        uses: alex-page/github-project-automation-plus@v0.8.1
+        with:
+          project: Task Kanban
+          column: done
+          repo-token: ${{ secrets.GHPROJECT_TOKEN }}
