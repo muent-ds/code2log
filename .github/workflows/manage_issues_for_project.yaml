@@ -1,7 +1,8 @@
 name: "Manage Issues for Project"
 
 on:
-  issues: types: [labeled]
+  issues:
+    types: [labeled]
 
 jobs:
   manage-issues-for-project:
